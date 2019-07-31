@@ -55,14 +55,14 @@ public class MapDBPersistentStore implements IMessagesStore, ISessionStore {
 	     try {
 	    	 tmpFile = new File(STORAGE_FILE_PATH);
 	         tmpFile.createNewFile();
-	         m_db = DBMaker.newFileDB(tmpFile).make();
-		     persistentOfflineMessage = m_db.getHashMap("offline");
-		     persistentQosTempMessage = m_db.getHashMap("publishTemp");
-		     persistentPubRelTempMessage = m_db.getHashMap("pubRelTemp");
-		     persistentSubscriptionStore = m_db.getHashMap("subscriptions");
-		     retainedStore = m_db.getHashMap("retained");
-		     publishPackgeIDStore = m_db.getHashMap("publishPID");
-		     pubRecPackgeIDStore = m_db.getHashMap("pubRecPID");
+	         m_db = DBMaker.fileDB(tmpFile).make();
+		     persistentOfflineMessage = m_db.get("offline");
+		     persistentQosTempMessage = m_db.get("publishTemp");
+		     persistentPubRelTempMessage = m_db.get("pubRelTemp");
+		     persistentSubscriptionStore = m_db.get("subscriptions");
+		     retainedStore = m_db.get("retained");
+		     publishPackgeIDStore = m_db.get("publishPID");
+		     pubRecPackgeIDStore = m_db.get("pubRecPID");
 	     } catch (IOException ex) {
 	         Log.error(null, ex);
 	     }     
